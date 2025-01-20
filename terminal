@@ -1,0 +1,1021 @@
+1 file changed, 1 insertion(+), 1 deletion(-)
+camper: /sql_reference$ git checkout main
+Switched to branch 'main'
+camper: /sql_reference$ git branch
+  feat/add-column-references
+  fix/create-table-syntax
+* main
+camper: /sql_reference$ git merge fit/create-table-syntax
+merge: fit/create-table-syntax - not something we can merge
+camper: /sql_reference$ git merge fix/create-table-syntax
+Updating bfdf674..c31e8c2
+Fast-forward
+ sql_reference.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+camper: /sql_reference$ git log --oneline
+c31e8c2 (HEAD -> main, fix/create-table-syntax) fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git branch -d fix/create-table-syntax
+Deleted branch fix/create-table-syntax (was c31e8c2).
+camper: /sql_reference$ git checkout feat/add-column-references
+Switched to branch 'feat/add-column-references'
+camper: /sql_reference$ git log --oneline
+3e2549d (HEAD -> feat/add-column-references) feat: add column reference
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git rebase main
+Successfully rebased and updated refs/heads/feat/add-column-references.
+camper: /sql_reference$ git log --oneline
+d048c8b (HEAD -> feat/add-column-references) feat: add column reference
+c31e8c2 (main) fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git status
+On branch feat/add-column-references
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+camper: /sql_reference$ git diff
+diff --git a/sql_reference.json b/sql_reference.json
+index 72cdf00..45ed6b0 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -8,6 +8,7 @@
+     "drop": "DROP TABLE table_name;"
+   },
+   "column": {
+-    "add": "ALTER TABLE table_name ADD COLUMN column_name;"
++    "add": "ALTER TABLE table_name ADD COLUMN column_name;",
++    "drop": "ALTER TABLE table_name DROP COLUMN column_name;"
+   }
+ }
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "feat: add drop column reference"
+[feat/add-column-references fa1e8a7] feat: add drop column reference
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git log --oneline
+fa1e8a7 (HEAD -> feat/add-column-references) feat: add drop column reference
+d048c8b feat: add column reference
+c31e8c2 (main) fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git checkout main
+Switched to branch 'main'
+camper: /sql_reference$ git checkout -b feat/add-insert-row-reference
+Switched to a new branch 'feat/add-insert-row-reference'
+camper: /sql_reference$ git status
+On branch feat/add-insert-row-reference
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+camper: /sql_reference$ git diff
+diff --git a/sql_reference.json b/sql_reference.json
+index 11761b7..f39cf0a 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -6,5 +6,8 @@
+   "table": {
+     "create": "CREATE TABLE table_name();",
+     "drop": "DROP TABLE table_name;"
++  },
++  "row": {
++    "insert": "INSERT INTO table_name(columns) VALUES(values);"
+   }
+ }
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "feat: add insert row reference"
+[feat/add-insert-row-reference 7d6814f] feat: add insert row reference
+ 1 file changed, 3 insertions(+)
+camper: /sql_reference$ git checkout main
+Switched to branch 'main'
+camper: /sql_reference$ git branch
+  feat/add-column-references
+  feat/add-insert-row-reference
+* main
+camper: /sql_reference$ git merge feat/add-insert-row-reference
+Updating c31e8c2..7d6814f
+Fast-forward
+ sql_reference.json | 3 +++
+ 1 file changed, 3 insertions(+)
+camper: /sql_reference$ git log --oneline
+7d6814f (HEAD -> main, feat/add-insert-row-reference) feat: add insert row reference
+c31e8c2 fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git checkout feat/add-column-references
+Switched to branch 'feat/add-column-references'
+camper: /sql_reference$ git rebase main
+Auto-merging sql_reference.json
+CONFLICT (content): Merge conflict in sql_reference.json
+error: could not apply d048c8b... feat: add column reference
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply d048c8b... feat: add column reference
+camper: /sql_reference$ git status
+'interactive rebase in progress; onto 7d6814f
+Last command done (1 command done):
+   pick d048c8b feat: add column reference
+Next command to do (1 remaining command):
+   pick fa1e8a7 feat: add drop column reference
+  (use "git rebase --edit-todo" to view and edit)
+You are currently rebasing branch 'feat/add-column-references' on '7d6814f'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+        both modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git status
+interactive rebase in progress; onto 7d6814f
+Last command done (1 command done):
+   pick d048c8b feat: add column reference
+Next command to do (1 remaining command):
+   pick fa1e8a7 feat: add drop column reference
+  (use "git rebase --edit-todo" to view and edit)
+You are currently rebasing branch 'feat/add-column-references' on '7d6814f'.
+  (all conflicts fixed: run "git rebase --continue")
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   sql_reference.json
+
+camper: /sql_reference$ git rebase --continue
+[detached HEAD 21cbff4] feat: add column reference
+ 1 file changed, 3 insertions(+)
+Successfully rebased and updated refs/heads/feat/add-column-references.
+camper: /sql_reference$ git log --oneline
+deab79b (HEAD -> feat/add-column-references) feat: add drop column reference
+21cbff4 feat: add column reference
+7d6814f (main, feat/add-insert-row-reference) feat: add insert row reference
+c31e8c2 fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git status
+On branch feat/add-column-references
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+camper: /sql_reference$ git diff
+diff --git a/sql_reference.json b/sql_reference.json
+index 3a4951d..b3759a1 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -12,6 +12,7 @@
+   },
+   "column": {
+     "add": "ALTER TABLE table_name ADD COLUMN column_name;",
+-    "drop": "ALTER TABLE table_name DROP COLUMN column_name;"
++    "drop": "ALTER TABLE table_name DROP COLUMN column_name;",
++    "rename": "ALTER TABLE table_name RENAME COLUMN column_name TO new_name;"
+   }
+ }
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "feat: add rename column reference"
+[feat/add-column-references 1e204df] feat: add rename column reference
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git branch
+* feat/add-column-references
+  feat/add-insert-row-reference
+  main
+camper: /sql_reference$ git checkout feat/add-insert-row-reference
+Switched to branch 'feat/add-insert-row-reference'
+camper: /sql_reference$ git status
+On branch feat/add-insert-row-reference
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+camper: /sql_reference$ git stash
+Saved working directory and index state WIP on feat/add-insert-row-reference: 7d6814f feat: add insert row reference
+camper: /sql_reference$ git status
+On branch feat/add-insert-row-reference
+nothing to commit, working tree clean
+camper: /sql_reference$ git stash list
+stash@{0}: WIP on feat/add-insert-row-reference: 7d6814f feat: add insert row reference
+camper: /sql_reference$ git stash pop
+On branch feat/add-insert-row-reference
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (0e6639f36bb571ef9b860c956d3e2d6834de3c63)
+camper: /sql_reference$ git stash list
+camper: /sql_reference$ git stash
+Saved working directory and index state WIP on feat/add-insert-row-reference: 7d6814f feat: add insert row reference
+camper: /sql_reference$ git stash list
+stash@{0}: WIP on feat/add-insert-row-reference: 7d6814f feat: add insert row reference
+camper: /sql_reference$ git stash show
+ sql_reference.json | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git stash show -p
+diff --git a/sql_reference.json b/sql_reference.json
+index f39cf0a..b2920bd 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -8,6 +8,7 @@
+     "drop": "DROP TABLE table_name;"
+   },
+   "row": {
+-    "insert": "INSERT INTO table_name(columns) VALUES(values);"
++    "insert": "INSERT INTO table_name(columns) VALUES(values);",
++    "update": "UPDATE table_name SET column_name = new_value WHERE condition;"
+   }
+ }
+camper: /sql_reference$ git stash apply
+On branch feat/add-insert-row-reference
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+camper: /sql_reference$ git stash list
+stash@{0}: WIP on feat/add-insert-row-reference: 7d6814f feat: add insert row reference
+camper: /sql_reference$ git stash
+Saved working directory and index state WIP on feat/add-insert-row-reference: 7d6814f feat: add insert row reference
+camper: /sql_reference$ git stash list
+stash@{0}: WIP on feat/add-insert-row-reference: 7d6814f feat: add insert row reference
+stash@{1}: WIP on feat/add-insert-row-reference: 7d6814f feat: add insert row reference
+camper: /sql_reference$ git stash show stash@{1}
+ sql_reference.json | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git stash show stash@{1} -p
+diff --git a/sql_reference.json b/sql_reference.json
+index f39cf0a..b2920bd 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -8,6 +8,7 @@
+     "drop": "DROP TABLE table_name;"
+   },
+   "row": {
+-    "insert": "INSERT INTO table_name(columns) VALUES(values);"
++    "insert": "INSERT INTO table_name(columns) VALUES(values);",
++    "update": "UPDATE table_name SET column_name = new_value WHERE condition;"
+   }
+ }
+camper: /sql_reference$ git stash drop
+Dropped refs/stash@{0} (b2f54c64106f43c2252406e67eba28288838096a)
+camper: /sql_reference$ git stash list
+stash@{0}: WIP on feat/add-insert-row-reference: 7d6814f feat: add insert row reference
+camper: /sql_reference$ git checkout main
+Switched to branch 'main'
+camper: /sql_reference$ git branch
+  feat/add-column-references
+  feat/add-insert-row-reference
+* main
+camper: /sql_reference$ git branch -d feat/add-insert-row-reference
+Deleted branch feat/add-insert-row-reference (was 7d6814f).
+camper: /sql_reference$ git checkout -b feat/add-more-row-references
+Switched to a new branch 'feat/add-more-row-references'
+camper: /sql_reference$ git stash list
+stash@{0}: WIP on feat/add-insert-row-reference: 7d6814f feat: add insert row reference
+camper: /sql_reference$ git stash pop
+On branch feat/add-more-row-references
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (7fa32447193d33964b0a3296756b6aca99b43754)
+camper: /sql_reference$ git stash list
+camper: /sql_reference$ git diff
+diff --git a/sql_reference.json b/sql_reference.json
+index f39cf0a..b2920bd 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -8,6 +8,7 @@
+     "drop": "DROP TABLE table_name;"
+   },
+   "row": {
+-    "insert": "INSERT INTO table_name(columns) VALUES(values);"
++    "insert": "INSERT INTO table_name(columns) VALUES(values);",
++    "update": "UPDATE table_name SET column_name = new_value WHERE condition;"
+   }
+ }
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git status
+On branch feat/add-more-row-references
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   sql_reference.json
+
+camper: /sql_reference$ git commit -m "feat: add update row reference"
+[feat/add-more-row-references b749765] feat: add update row reference
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git checkout main
+Switched to branch 'main'
+camper: /sql_reference$ git merge main
+Already up to date.
+camper: /sql_reference$ git branch
+  feat/add-column-references
+  feat/add-more-row-references
+* main
+camper: /sql_reference$ git merge feat/add-more-row-references
+Updating 7d6814f..b749765
+Fast-forward
+ sql_reference.json | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git checkout feat/add-column-references
+Switched to branch 'feat/add-column-references'
+camper: /sql_reference$ git rebase main
+Auto-merging sql_reference.json
+CONFLICT (content): Merge conflict in sql_reference.json
+error: could not apply 21cbff4... feat: add column reference
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply 21cbff4... feat: add column reference
+camper: /sql_reference$ git diff
+diff --cc sql_reference.json
+index b2920bd,f6eed25..0000000
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@@ -8,7 -8,9 +8,10 @@@
+      "drop": "DROP TABLE table_name;"
+    },
+    "row": {
+ -    "insert": "INSERT INTO table_name(columns) VALUES(values);"
+ +    "insert": "INSERT INTO table_name(columns) VALUES(values);",
+ +    "update": "UPDATE table_name SET column_name = new_value WHERE condition;"
++   },
++   "column": {
++     "add": "ALTER TABLE table_name ADD COLUMN column_name;"
+    }
+  }
+camper: /sql_reference$ git status\
+> ^C
+camper: /sql_reference$ git status
+interactive rebase in progress; onto b749765
+Last command done (1 command done):
+   pick 21cbff4 feat: add column reference
+Next commands to do (2 remaining commands):
+   pick deab79b feat: add drop column reference
+   pick 1e204df feat: add rename column reference
+  (use "git rebase --edit-todo" to view and edit)
+You are currently rebasing branch 'feat/add-column-references' on 'b749765'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+        both modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git status
+interactive rebase in progress; onto b749765
+Last command done (1 command done):
+   pick 21cbff4 feat: add column reference
+Next commands to do (2 remaining commands):
+   pick deab79b feat: add drop column reference
+   pick 1e204df feat: add rename column reference
+  (use "git rebase --edit-todo" to view and edit)
+You are currently rebasing branch 'feat/add-column-references' on 'b749765'.
+  (all conflicts fixed: run "git rebase --continue")
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   sql_reference.json
+
+camper: /sql_reference$ git rebase --continue
+[detached HEAD f9ad175] feat: add column reference
+ 1 file changed, 3 insertions(+)
+Successfully rebased and updated refs/heads/feat/add-column-references.
+camper: /sql_reference$ git log --oneline
+6f2a8c1 (HEAD -> feat/add-column-references) feat: add rename column reference
+abdb73e feat: add drop column reference
+f9ad175 feat: add column reference
+b749765 (main, feat/add-more-row-references) feat: add update row reference
+7d6814f feat: add insert row reference
+c31e8c2 fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git diff
+diff --git a/sql_reference.json b/sql_reference.json
+index 642ab9b..d443b57 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -14,6 +14,7 @@
+   "column": {
+     "add": "ALTER TABLE table_name ADD COLUMN column_name;",
+     "drop": "ALTER TABLE table_name DROP COLUMN column_name;",
+-    "rename": "ALTER TABLE table_name RENAME COLUMN column_name TO new_name;"
++    "rename": "ALTER TABLE table_name RENAME COLUMN column_name TO new_name;",
++    "primary_key": "ALTER TABLE table_name ADD PRIMARY KEY(column_name);"
+   }
+ }
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "feat
+> ^C
+camper: /sql_reference$ git commit -m "feat: add primary key reference"
+[feat/add-column-references c0e2240] feat: add primary key reference
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git diff
+diff --git a/sql_reference.json b/sql_reference.json
+index d443b57..a6fc72e 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -15,6 +15,7 @@
+     "add": "ALTER TABLE table_name ADD COLUMN column_name;",
+     "drop": "ALTER TABLE table_name DROP COLUMN column_name;",
+     "rename": "ALTER TABLE table_name RENAME COLUMN column_name TO new_name;",
+-    "primary_key": "ALTER TABLE table_name ADD PRIMARY KEY(column_name);"
++    "primary_key": "ALTER TABLE table_name ADD PRIMARY KEY(column_name);",
++    "foreign_key": "ALTER TABLE table_name ADD FOREIGN KEY(column_name) REFERENCES table_name(column_name);"
+   }
+ }
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "feat: add foreign key reference"
+[feat/add-column-references b4aeddc] feat: add foreign key reference
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git branch
+* feat/add-column-references
+  feat/add-more-row-references
+  main
+camper: /sql_reference$ git checkout feat/add-more-row-references
+Switched to branch 'feat/add-more-row-references'
+camper: /sql_reference$ git diff
+diff --git a/sql_reference.json b/sql_reference.json
+index b2920bd..5761ca5 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -9,6 +9,7 @@
+   },
+   "row": {
+     "insert": "INSERT INTO table_name(columns) VALUES(values);",
+-    "update": "UPDATE table_name SET column_name = new_value WHERE condition;"
++    "update": "UPDATE table_name SET column_name = new_value WHERE condition;",
++    "delete": "DELETE FROM table_name WHERE condition;"
+   }
+ }
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "feat: add delete row reference"
+[feat/add-more-row-references 7880060] feat: add delete row reference
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git checkout main
+Switched to branch 'main'
+camper: /sql_reference$ git branch
+  feat/add-column-references
+  feat/add-more-row-references
+* main
+camper: /sql_reference$ git merge feat/add-more-row-references
+Updating b749765..7880060
+Fast-forward
+ sql_reference.json | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git branch -d feat/add-more-row-references
+Deleted branch feat/add-more-row-references (was 7880060).
+camper: /sql_reference$ git checkout fix/add-missing-rename-references
+error: pathspec 'fix/add-missing-rename-references' did not match any file(s) known to git
+camper: /sql_reference$ git checkout -b fix/add-missing-rename-references
+Switched to a new branch 'fix/add-missing-rename-references'
+camper: /sql_reference$ git diff
+diff --git a/sql_reference.json b/sql_reference.json
+index 5761ca5..47ddd29 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -1,7 +1,8 @@
+ {
+   "database": {
+     "create": "CREATE DATABASE database_name;",
+-    "drop": "DROP DATABASE database_name;"
++    "drop": "DROP DATABASE database_name;",
++    "rename": "ALTER DATABASE database_name RENAME TO new_name;"
+   },
+   "table": {
+     "create": "CREATE TABLE table_name();",
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "fix: add missing rename database reference"
+[fix/add-missing-rename-references 62739b6] fix: add missing rename database reference
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git branch
+  feat/add-column-references
+* fix/add-missing-rename-references
+  main
+camper: /sql_reference$ git checkout feat/add-column-references
+Switched to branch 'feat/add-column-references'
+camper: /sql_reference$ git rebase feat/add-column-references
+Current branch feat/add-column-references is up to date.
+camper: /sql_reference$ git rebase feat/add-column-references
+Current branch feat/add-column-references is up to date.
+camper: /sql_reference$ git rebase main
+Auto-merging sql_reference.json
+CONFLICT (content): Merge conflict in sql_reference.json
+error: could not apply f9ad175... feat: add column reference
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply f9ad175... feat: add column reference
+camper: /sql_reference$ git status
+interactive rebase in progress; onto 7880060
+Last command done (1 command done):
+   pick f9ad175 feat: add column reference
+Next commands to do (4 remaining commands):
+   pick abdb73e feat: add drop column reference
+   pick 6f2a8c1 feat: add rename column reference
+  (use "git rebase --edit-todo" to view and edit)
+You are currently rebasing branch 'feat/add-column-references' on '7880060'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+        both modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git status
+interactive rebase in progress; onto 7880060
+Last command done (1 command done):
+   pick f9ad175 feat: add column reference
+Next commands to do (4 remaining commands):
+   pick abdb73e feat: add drop column reference
+   pick 6f2a8c1 feat: add rename column reference
+  (use "git rebase --edit-todo" to view and edit)
+You are currently rebasing branch 'feat/add-column-references' on '7880060'.
+  (all conflicts fixed: run "git rebase --continue")
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   sql_reference.json
+
+camper: /sql_reference$ git rebase --continue
+[detached HEAD a2cab1e] feat: add column reference
+ 1 file changed, 3 insertions(+)
+Successfully rebased and updated refs/heads/feat/add-column-references.
+camper: /sql_reference$ git diff
+diff --git a/sql_reference.json b/sql_reference.json
+index 37df137..264a924 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -17,6 +17,7 @@
+     "drop": "ALTER TABLE table_name DROP COLUMN column_name;",
+     "rename": "ALTER TABLE table_name RENAME COLUMN column_name TO new_name;",
+     "primary_key": "ALTER TABLE table_name ADD PRIMARY KEY(column_name);",
+-    "foreign_key": "ALTER TABLE table_name ADD FOREIGN KEY(column_name) REFERENCES table_name(column_name);"
++    "foreign_key": "ALTER TABLE table_name ADD FOREIGN KEY(column_name) REFERENCES table_name(column_name);",
++    "unique": "ALTER TABLE table_name ADD UNIQUE(column_name);"
+   }
+ }
+camper: /sql_reference$ git status
+On branch feat/add-column-references
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "feat: add unique reference"
+[feat/add-column-references c04f71e] feat: add unique reference
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git reset HEAD~1
+Unstaged changes after reset:
+M       sql_reference.json
+camper: /sql_reference$ git log --oneline
+d2368a6 (HEAD -> feat/add-column-references) feat: add foreign key reference
+940aa00 feat: add primary key reference
+c5fd12e feat: add rename column reference
+6fb0786 feat: add drop column reference
+a2cab1e feat: add column reference
+7880060 (main) feat: add delete row reference
+b749765 feat: add update row reference
+7d6814f feat: add insert row reference
+c31e8c2 fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git status
+On branch feat/add-column-references
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   sql_reference.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+camper: /sql_reference$ git diff
+diff --git a/sql_reference.json b/sql_reference.json
+index 37df137..264a924 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -17,6 +17,7 @@
+     "drop": "ALTER TABLE table_name DROP COLUMN column_name;",
+     "rename": "ALTER TABLE table_name RENAME COLUMN column_name TO new_name;",
+     "primary_key": "ALTER TABLE table_name ADD PRIMARY KEY(column_name);",
+-    "foreign_key": "ALTER TABLE table_name ADD FOREIGN KEY(column_name) REFERENCES table_name(column_name);"
++    "foreign_key": "ALTER TABLE table_name ADD FOREIGN KEY(column_name) REFERENCES table_name(column_name);",
++    "unique": "ALTER TABLE table_name ADD UNIQUE(column_name);"
+   }
+ }
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "feat: add unique reference"
+[feat/add-column-references c1b69e5] feat: add unique reference
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git revert HEAD
+[feat/add-column-references 5c2ac99] Revert "feat: add unique reference"
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+camper: /sql_reference$ git log --oneline
+5c2ac99 (HEAD -> feat/add-column-references) Revert "feat: add unique reference"
+c1b69e5 feat: add unique reference
+d2368a6 feat: add foreign key reference
+940aa00 feat: add primary key reference
+c5fd12e feat: add rename column reference
+6fb0786 feat: add drop column reference
+a2cab1e feat: add column reference
+7880060 (main) feat: add delete row reference
+b749765 feat: add update row reference
+7d6814f feat: add insert row reference
+c31e8c2 fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git show
+commit 5c2ac99cd91c033ef8654f90bd013c6d5d3abc0e (HEAD -> feat/add-column-references)
+Author: Logan Lantz <loganlantz555@gmail.com>
+Date:   Mon Jan 20 12:53:57 2025 +0000
+
+    Revert "feat: add unique reference"
+    
+    This reverts commit c1b69e5eb30927980da0acdbc3f237118227af8a.
+
+diff --git a/sql_reference.json b/sql_reference.json
+index 264a924..37df137 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -17,7 +17,6 @@
+     "drop": "ALTER TABLE table_name DROP COLUMN column_name;",
+     "rename": "ALTER TABLE table_name RENAME COLUMN column_name TO new_name;",
+     "primary_key": "ALTER TABLE table_name ADD PRIMARY KEY(column_name);",
+-    "foreign_key": "ALTER TABLE table_name ADD FOREIGN KEY(column_name) REFERENCES table_name(column_name);",
+-    "unique": "ALTER TABLE table_name ADD UNIQUE(column_name);"
+camper: /sql_reference$ 
+camper: /sql_reference$ git show HEAD~1
+commit c1b69e5eb30927980da0acdbc3f237118227af8a
+Author: Logan Lantz <loganlantz555@gmail.com>
+Date:   Mon Jan 20 12:53:44 2025 +0000
+
+    feat: add unique reference
+
+diff --git a/sql_reference.json b/sql_reference.json
+index 37df137..264a924 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -17,6 +17,7 @@
+     "drop": "ALTER TABLE table_name DROP COLUMN column_name;",
+     "rename": "ALTER TABLE table_name RENAME COLUMN column_name TO new_name;",
+     "primary_key": "ALTER TABLE table_name ADD PRIMARY KEY(column_name);",
+-    "foreign_key": "ALTER TABLE table_name ADD FOREIGN KEY(column_name) REFERENCES table_name(column_name);"
++    "foreign_key": "ALTER TABLE table_name ADD FOREIGN KEY(column_name) REFERENCES table_name(column_name);",
++    "unique": "ALTER TABLE table_name ADD UNIQUE(column_name);"
+   }
+camper: /sql_reference$ git rebase --interactive HEAD~2
+Successfully rebased and updated refs/heads/feat/add-column-references.
+camper: /sql_reference$ git log --oneline
+d2368a6 (HEAD -> feat/add-column-references) feat: add foreign key reference
+940aa00 feat: add primary key reference
+c5fd12e feat: add rename column reference
+6fb0786 feat: add drop column reference
+a2cab1e feat: add column reference
+7880060 (main) feat: add delete row reference
+b749765 feat: add update row reference
+7d6814f feat: add insert row reference
+c31e8c2 fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git rebase --interactive --root
+[detached HEAD 990acb6] feat: add column references
+ Date: Mon Jan 20 11:01:19 2025 +0000
+ 1 file changed, 3 insertions(+)
+Successfully rebased and updated refs/heads/feat/add-column-references.
+camper: /sql_reference$ git log --oneline
+d70f749 (HEAD -> feat/add-column-references) feat: add foreign key reference
+4769279 feat: add primary key reference
+489c144 feat: add rename column reference
+3c06f1d feat: add drop column reference
+990acb6 feat: add column references
+7880060 (main) feat: add delete row reference
+b749765 feat: add update row reference
+7d6814f feat: add insert row reference
+c31e8c2 fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git rebase main
+Current branch feat/add-column-references is up to date.
+camper: /sql_reference$ git log --oneline
+d70f749 (HEAD -> feat/add-column-references) feat: add foreign key reference
+4769279 feat: add primary key reference
+489c144 feat: add rename column reference
+3c06f1d feat: add drop column reference
+990acb6 feat: add column references
+7880060 (main) feat: add delete row reference
+b749765 feat: add update row reference
+7d6814f feat: add insert row reference
+c31e8c2 fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git rebase --interactive HEAD~5
+[detached HEAD bb6a94f] feat: add column references
+ Date: Mon Jan 20 11:01:19 2025 +0000
+ 1 file changed, 7 insertions(+)
+Successfully rebased and updated refs/heads/feat/add-column-references.
+camper: /sql_reference$ git log --oneline
+bb6a94f (HEAD -> feat/add-column-references) feat: add column references
+7880060 (main) feat: add delete row reference
+b749765 feat: add update row reference
+7d6814f feat: add insert row reference
+c31e8c2 fix: create table syntax
+bfdf674 feat: add drop table reference
+dc8f038 feat: add create table reference
+9d2395a feat: add drop database reference
+75207e8 feat: add create database reference
+57034e2 Initial commit
+camper: /sql_reference$ git log -1
+commit bb6a94f96977788fcda2da066726913c2d06572f (HEAD -> feat/add-column-references)
+Author: Logan Lantz <loganlantz555@gmail.com>
+Date:   Mon Jan 20 11:01:19 2025 +0000
+
+    feat: add column references
+    
+    feat: add drop column reference
+    
+    feat: add rename column reference
+    
+    feat: add primary key reference
+    
+    feat: add foreign key reference
+camper: /sql_reference$ git checkout main
+Switched to branch 'main'
+camper: /sql_reference$ git branch
+  feat/add-column-references
+  fix/add-missing-rename-references
+* main
+camper: /sql_reference$ git merge feat/add-column-references
+Updating 7880060..bb6a94f
+Fast-forward
+ sql_reference.json | 7 +++++++
+ 1 file changed, 7 insertions(+)
+camper: /sql_reference$ git branch -d feat/add-column-references
+Deleted branch feat/add-column-references (was bb6a94f).
+camper: /sql_reference$ git checkout fix/add-missing-rename-references
+Switched to branch 'fix/add-missing-rename-references'
+camper: /sql_reference$ git rebase main
+Successfully rebased and updated refs/heads/fix/add-missing-rename-references.
+camper: /sql_reference$ git log --oneline -5
+8aa00fe (HEAD -> fix/add-missing-rename-references) fix: add missing rename database reference
+bb6a94f (main) feat: add column references
+7880060 feat: add delete row reference
+b749765 feat: add update row reference
+7d6814f feat: add insert row reference
+camper: /sql_reference$ git diff
+diff --git a/sql_reference.json b/sql_reference.json
+index 21d4641..fdaf589 100644
+--- a/sql_reference.json
++++ b/sql_reference.json
+@@ -6,7 +6,8 @@
+   },
+   "table": {
+     "create": "CREATE TABLE table_name();",
+-    "drop": "DROP TABLE table_name;"
++    "drop": "DROP TABLE table_name;",
++    "rename": "ALTER TABLE table_name RENAME TO new_name;"
+   },
+   "row": {
+     "insert": "INSERT INTO table_name(columns) VALUES(values);",
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "fix: add missing rename table reference"
+[fix/add-missing-rename-references 3b32efa] fix: add missing rename table reference
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+camper: /sql_reference$ git log --oneline -5
+3b32efa (HEAD -> fix/add-missing-rename-references) fix: add missing rename table reference
+8aa00fe fix: add missing rename database reference
+bb6a94f (main) feat: add column references
+7880060 feat: add delete row reference
+b749765 feat: add update row reference
+camper: /sql_reference$ git rebase --interactive HEAD~2
+[detached HEAD 2e028bc] fix: add missing rename database reference
+ Date: Mon Jan 20 12:48:45 2025 +0000
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+Successfully rebased and updated refs/heads/fix/add-missing-rename-references.
+camper: /sql_reference$ git rebase --interactive HEAD~2
+[detached HEAD e5f6a78] fix: add missing rename references
+ Author: moT01 <20648924+moT01@users.noreply.github.com>
+ Date: Thu Sep 9 22:47:21 2021 -0500
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+Successfully rebased and updated refs/heads/fix/add-missing-rename-references.
+camper: /sql_reference$ git log -1
+commit e5f6a789df957d525dc3aa7509a41188e6244ecc (HEAD -> fix/add-missing-rename-references)
+Author: moT01 <20648924+moT01@users.noreply.github.com>
+Date:   Thu Sep 9 22:47:21 2021 -0500
+
+    fix: add missing rename references
+    
+    fix: add missing rename table reference
+camper: /sql_reference$ git checkout maIN
+error: pathspec 'maIN' did not match any file(s) known to git
+camper: /sql_reference$ git checkout main
+Switched to branch 'main'
+camper: /sql_reference$ git branch
+  fix/add-missing-rename-references
+* main
+camper: /sql_reference$ git merge fix/add-missing-rename-references
+Updating 193e3a2..e5f6a78
+Fast-forward
+ sql_reference.json | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+camper: /sql_reference$ git branch
+  fix/add-missing-rename-references
+* main
+camper: /sql_reference$ git branch -d fix/add-missing-rename-references
+Deleted branch fix/add-missing-rename-references (was e5f6a78).
+camper: /sql_reference$ git log --oneline
+e5f6a78 (HEAD -> main) fix: add missing rename references
+193e3a2 feat: add column references
+87db07c feat: add delete row reference
+a72acea feat: add update row reference
+88989a2 feat: add insert row reference
+d3609d2 fix: create table syntax
+0ae0bd4 feat: add drop table reference
+18f0344 feat: add create table reference
+684afe7 feat: add drop database reference
+a5de944 feat: add create database reference
+a029be1 Initial commit
+camper: /sql_reference$ git checkout -b feat/add-gitignore
+Switched to a new branch 'feat/add-gitignore'
+camper: /sql_reference$ touch .env
+camper: /sql_reference$ git status
+On branch feat/add-gitignore
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .env
+
+nothing added to commit but untracked files present (use "git add" to track)
+camper: /sql_reference$ touch .gitignore
+camper: /sql_reference$ git status
+On branch feat/add-gitignore
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .env
+        .gitignore
+
+nothing added to commit but untracked files present (use "git add" to track)
+camper: /sql_reference$ git status
+On branch feat/add-gitignore
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+
+nothing added to commit but untracked files present (use "git add" to track)
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "feat: add .gitignore"
+[feat/add-gitignore 1a1d900] feat: add .gitignore
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+camper: /sql_reference$ touch sample.env
+camper: /sql_reference$ git status
+On branch feat/add-gitignore
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        sample.env
+
+nothing added to commit but untracked files present (use "git add" to track)
+camper: /sql_reference$ git add .
+camper: /sql_reference$ git commit -m "feat: add sample.env"
+[feat/add-gitignore 99d9d8e] feat: add sample.env
+ 1 file changed, 1 insertion(+)
+ create mode 100644 sample.env
+camper: /sql_reference$ git log --oneline -5
+99d9d8e (HEAD -> feat/add-gitignore) feat: add sample.env
+1a1d900 feat: add .gitignore
+e5f6a78 (main) fix: add missing rename references
+193e3a2 feat: add column references
+87db07c feat: add delete row reference
+camper: /sql_reference$ git rebase --interactive HEAD~2
+[detached HEAD d4e7081] feat: add .gitignore and sample.env feat: add .gitignore
+ Date: Mon Jan 20 13:11:45 2025 +0000
+ 2 files changed, 2 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 sample.env
+Successfully rebased and updated refs/heads/feat/add-gitignore.
+camper: /sql_reference$ git log --oneline -1
+d4e7081 (HEAD -> feat/add-gitignore) feat: add .gitignore and sample.env feat: add .gitignore
+camper: /sql_reference$ git log -1
+commit d4e7081ea0b17cfc471b7e92a571c042b8c57cba (HEAD -> feat/add-gitignore)
+Author: Logan Lantz <loganlantz555@gmail.com>
+Date:   Mon Jan 20 13:11:45 2025 +0000
+
+    feat: add .gitignore and sample.env
+    feat: add .gitignore
+    
+    feat: add sample.env
+camper: /sql_reference$ git checkout main
+Switched to branch 'main'
+camper: /sql_reference$ git branch
+  feat/add-gitignore
+* main
+camper: /sql_reference$ git merge feat/add-gitignore
+Updating e5f6a78..d4e7081
+Fast-forward
+ .gitignore | 1 +
+ sample.env | 1 +
+ 2 files changed, 2 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 sample.env
+camper: /sql_reference$ git branch -d feat/add-gitignore
+Deleted branch feat/add-gitignore (was d4e7081).
+camper: /sql_reference$ git log --oneline
+d4e7081 (HEAD -> main) feat: add .gitignore and sample.env feat: add .gitignore
+e5f6a78 fix: add missing rename references
+193e3a2 feat: add column references
+87db07c feat: add delete row reference
+a72acea feat: add update row reference
+88989a2 feat: add insert row reference
+d3609d2 fix: create table syntax
+0ae0bd4 feat: add drop table reference
+18f0344 feat: add create table reference
+684afe7 feat: add drop database reference
+a5de944 feat: add create database reference
+a029be1 Initial commit
+camper: /sql_reference$ git log
+commit d4e7081ea0b17cfc471b7e92a571c042b8c57cba (HEAD -> main)
+Author: Logan Lantz <loganlantz555@gmail.com>
+Date:   Mon Jan 20 13:11:45 2025 +0000
+
+    feat: add .gitignore and sample.env
+    feat: add .gitignore
+    
+    feat: add sample.env
+
+commit e5f6a789df957d525dc3aa7509a41188e6244ecc
+Author: moT01 <20648924+moT01@users.noreply.github.com>
+Date:   Thu Sep 9 22:47:21 2021 -0500
+
+    fix: add missing rename references
+    
+    fix: add missing rename table reference
+
+commit 193e3a260a3d132a5aeb82ae7303cc499842ae12
+Author: moT01 <20648924+moT01@users.noreply.github.com>
+Date:   Thu Sep 9 22:04:50 2021 -0500
+camper: /sql_reference$ 
